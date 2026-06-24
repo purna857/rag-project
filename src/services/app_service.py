@@ -2,7 +2,7 @@ from venv import logger
 from config.settings import APP_NAME
 from utils.logger import logger 
 def start_application():
-    logger.info(f"Starting the {APP_NAME} application...") 
+    logger.info("RAG application has started.")  # Log when the application starts
 
     try:
         number = 10/0  # This will raise a ZeroDivisionError
