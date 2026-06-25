@@ -1,0 +1,9 @@
+Python is a high-level programming language.
+
+Functions are reusable blocks of code.
+
+Lists are mutable.
+
+Tuples are immutable.
+
+Python supports object-oriented programming.
