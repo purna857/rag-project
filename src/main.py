@@ -4,6 +4,7 @@ from services.document_loader import DocumentLoader
 from services.text_splitter import TextSplitter
 from services.embedding_service import EmbeddingService
 from services.vector_store import VectorStore
+from services.retriever import Retriever
 
 def main():
     start_application()
@@ -47,7 +48,14 @@ def main():
         logger.info("\nEmbedding Dimension:")
         logger.info(len(document["embedding"]))
         logger.info("\nMetadata:")
-        logger.info(document["metadata"])
+        logger.info(document["metadata"]) 
+    
+    #step 6:
+    retriever =  Retriever(vector_store,embedding_service)  
+    query = input('Enter Your Question: ') 
+    result = retriever.retrieve(query) 
+    logger.info(result["chunk"])
 
+      
 if __name__ == "__main__":
     main()
