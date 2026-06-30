@@ -5,7 +5,8 @@ from services.text_splitter import TextSplitter
 from services.embedding_service import EmbeddingService
 from services.vector_store import VectorStore
 from services.retriever import Retriever
-
+from services.prompt_builder import PromptBuilder
+from services.llm_service import LLMService
 def main():
     start_application()
 
@@ -55,7 +56,16 @@ def main():
     query = input('Enter Your Question: ') 
     result = retriever.retrieve(query) 
     logger.info(result["chunk"])
-
+    
+    prompt_builder = PromptBuilder() 
+    prompt = prompt_builder.build_prompt(
+    context=result["chunk"],
+    question=query
+    )
+    llm_service = LLMService() 
+    answer = llm_service.generate_answer(prompt) 
+    logger.info("\nGenerated Answer:\n")
+    logger.info(answer)
       
 if __name__ == "__main__":
     main()
