@@ -24,16 +24,16 @@ def main():
     embeddings = embedding_service.generate_embeddings(chunks) 
 
 
-    logger.info("\n==============CHUNKS==============\n")
-    for chunk in chunks:
-        logger.info(f"{chunk}\n")
+    # logger.info("\n==============CHUNKS==============\n")
+    # for chunk in chunks:
+    #     logger.info(f"{chunk}\n")
 
-    logger.info("\n==============EMBEDDINGS==============\n") 
+    # logger.info("\n==============EMBEDDINGS==============\n") 
 
-    for embedding in embeddings:
-        logger.info(f"{embedding}\n") 
-        logger.info(f"Dimension {len(embedding)}") 
-        logger.info("-"*50)
+    # for embedding in embeddings:
+    #     logger.info(f"{embedding}\n") 
+    #     logger.info(f"Dimension {len(embedding)}") 
+    #     logger.info("-"*50)
     # Step 4 : Store in VectorStore
     vector_store = VectorStore()
     vector_store.add_documents(chunks, embeddings)
@@ -42,20 +42,20 @@ def main():
     documents = vector_store.get_documents()
 
     # Print everything
-    for document in documents:
-        logger.info("=" * 80)
-        logger.info("Chunk:")
-        logger.info(document["chunk"])
-        logger.info("\nEmbedding Dimension:")
-        logger.info(len(document["embedding"]))
-        logger.info("\nMetadata:")
-        logger.info(document["metadata"]) 
+    # for document in documents:
+    #     logger.info("=" * 80)
+    #     logger.info("Chunk:")
+    #     logger.info(document["chunk"])
+    #     logger.info("\nEmbedding Dimension:")
+    #     logger.info(len(document["embedding"]))
+    #     logger.info("\nMetadata:")
+    #     logger.info(document["metadata"]) 
     
     #step 6:
     retriever =  Retriever(vector_store,embedding_service)  
     query = input('Enter Your Question: ') 
     result = retriever.retrieve(query) 
-    logger.info(result["chunk"])
+    # logger.info(result["chunk"])
     
     prompt_builder = PromptBuilder() 
     prompt = prompt_builder.build_prompt(
